@@ -1,0 +1,60 @@
+# data parameters
+dataset: LS_3CFRGB
+train_data_path: /data1/projects/iarpa-fusion/data/ARA/Landsat+Sentinel_64_0.75_allBands/masked_trainable/
+val_data_path: 
+resume: ./saved_models/wacv/EDSR_TRI_LR_LS_3CFRGB_120_128_0.01_HAres_noInplace_3000val(ablation)_new/EDSR_TRI_LR_LS_3CFRGB_120_128_0.01_HAres_noInplace_3000val(ablation)_new_cv_0.pt
+extract: True
+batch_size: 128
+val_size: 3000
+image_shape: [128, 128, 20]
+mask_batch_same: True
+max_delta_shape: [32, 32]
+eval_city: 
+inplace: False
+univariate: False
+std_factor: 1
+reg_lambda: 0.005
+rgb_feature: True
+imgDim: 192
+
+# training parameters
+expname: HAres_noInplace_3000val(ablation)_new_vis
+save_path: ./saved_models/wacv/
+cuda: True
+gpu_ids: [0]    # set the GPU ids to use, e.g. [0] or [1, 2]
+num_workers: 4
+lr: 0.01
+beta1: 0.5
+beta2: 0.9
+n_critic: 5
+nepoch: 120
+num_cv: 1
+print_iter: 100
+viz_iter: 1000
+viz_max_out: 16
+snapshot_save_iter: 5000
+patience: 50
+early_stop: False
+lr_decay: True
+
+
+# cloudy loss
+cloudy_weight: 0.9
+free_weight: 0.1
+  
+# architecture
+in_channels: 12
+out_channels: 3
+img_channels: 3
+feat: 256
+activation: relu
+kernel_size: 3
+num_layers: 12
+num_fusion_layers: 8
+temporal_window: 1
+use_mask: True
+downsample_factor: 3
+
+
+# model selection
+selected_model: EDSR_TRI_LR
